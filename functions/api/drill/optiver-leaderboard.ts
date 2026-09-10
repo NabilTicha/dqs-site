@@ -22,7 +22,7 @@ const NORM_EXPR = `
 `;
 
 export const onRequestGet: CFPagesFunction = async ({ request, env }) => {
-  const lb = await env.FORECAST_DB.prepare(`
+  const lb = await env.DB.prepare(`
     WITH best AS (
       SELECT user_id, game_type, MAX(score) AS best_raw
       FROM drill_scores
@@ -64,7 +64,7 @@ export const onRequestGet: CFPagesFunction = async ({ request, env }) => {
   let personal = null;
 
   if (user) {
-    const rows = await env.FORECAST_DB.prepare(`
+    const rows = await env.DB.prepare(`
       WITH best AS (
         SELECT game_type, MAX(score) AS best_raw
         FROM drill_scores

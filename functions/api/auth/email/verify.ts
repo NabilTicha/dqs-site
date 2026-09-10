@@ -25,7 +25,7 @@ export const onRequestPost: CFPagesFunction = async ({ request, env }) => {
 
   const now = Math.floor(Date.now() / 1000);
 
-  const row = await env.FORECAST_DB.prepare(`
+  const row = await env.DB.prepare(`
     SELECT id, code_hash, attempts
     FROM email_codes
     WHERE email = ?1 AND consumed_at IS NULL AND expires_at > ?2
@@ -38,7 +38,7 @@ export const onRequestPost: CFPagesFunction = async ({ request, env }) => {
   if (!row) return errorResponse('That code has expired. Request a new one.', 400);
 
   if (row.attempts >= MAX_ATTEMPTS) {
-    await env.FORECAST_DB.prepare(
+    await env.DB.prepare(
       'UPDATE email_codes SET consumed_at = ?2 WHERE id = ?1'
     ).bind(row.id, now).run();
     return errorResponse('Too many incorrect attempts. Request a new code.', 429);
@@ -46,7 +46,7 @@ export const onRequestPost: CFPagesFunction = async ({ request, env }) => {
 
   // Count the attempt before comparing, so a client that abandons the request
   // mid-flight still burns it. Caps brute force at MAX_ATTEMPTS of 10^6.
-  await env.FORECAST_DB.prepare(
+  await env.DB.prepare(
     'UPDATE email_codes SET attempts = attempts + 1 WHERE id = ?1'
   ).bind(row.id).run();
 
@@ -60,20 +60,20 @@ export const onRequestPost: CFPagesFunction = async ({ request, env }) => {
   }
 
   // Single use.
-  await env.FORECAST_DB.prepare(
+  await env.DB.prepare(
     'UPDATE email_codes SET consumed_at = ?2 WHERE id = ?1'
   ).bind(row.id, now).run();
 
   // Keyed on email, exactly as the Microsoft flow was, so any user rows that
   // predate this change are matched rather than duplicated. microsoft_id is
   // left alone: NULL for new rows, untouched for old ones.
-  await env.FORECAST_DB.prepare(`
+  await env.DB.prepare(`
     INSERT INTO users (id, email, name, last_login)
     VALUES (?1, ?2, ?3, datetime('now'))
     ON CONFLICT(email) DO UPDATE SET last_login = datetime('now')
   `).bind(crypto.randomUUID(), email, displayNameFromEmail(email)).run();
 
-  const dbUser = await env.FORECAST_DB.prepare(
+  const dbUser = await env.DB.prepare(
     'SELECT id, email, name, picture_url FROM users WHERE email = ?1'
   ).bind(email).first<{ id: string; email: string; name: string; picture_url: string | null }>();
 
@@ -89,6 +89,6 @@ export const onRequestPost: CFPagesFunction = async ({ request, env }) => {
   return jsonResponse(
     { ok: true, user: { id: dbUser.id, email: dbUser.email, name: dbUser.name } },
     200,
-    { 'Set-Cookie': `hq_token=${jwt}; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=${7 * 24 * 60 * 60}` }
+    { 'Set-Cookie': `dqs_token=${jwt}; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=${7 * 24 * 60 * 60}` }
   );
 };

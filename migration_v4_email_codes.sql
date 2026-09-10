@@ -8,7 +8,7 @@
 --
 -- Run ONCE on the remote database BEFORE deploying the updated code:
 --
---   npx wrangler d1 execute FORECAST_DB --remote --file=migration_v4_email_codes.sql
+--   npx wrangler d1 execute DB --remote --file=migration_v4_email_codes.sql
 --
 -- The users table is unchanged. users.microsoft_id simply stays NULL for
 -- accounts created through this flow (SQLite permits many NULLs in a

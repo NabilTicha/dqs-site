@@ -2,7 +2,7 @@ import { verifyJWT, type JWTPayload } from './jwt';
 
 export async function getUser(request: Request, jwtSecret: string): Promise<JWTPayload | null> {
   const cookie = request.headers.get('Cookie') || '';
-  const match = cookie.match(/(?:^|;\s*)hq_token=([^;]+)/);
+  const match = cookie.match(/(?:^|;\s*)dqs_token=([^;]+)/);
   if (!match) return null;
   return verifyJWT(match[1], jwtSecret);
 }

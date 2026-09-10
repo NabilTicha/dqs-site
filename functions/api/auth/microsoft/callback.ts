@@ -96,7 +96,7 @@ export const onRequestGet: CFPagesFunction = async ({ request, env }) => {
 
   // ON CONFLICT(email): a user who already exists (perhaps from the previous
   // Google flow) gets matched by email and their microsoft_id is filled in.
-  await env.FORECAST_DB.prepare(`
+  await env.DB.prepare(`
     INSERT INTO users (id, microsoft_id, email, name, picture_url, last_login)
     VALUES (?1, ?2, ?3, ?4, ?5, datetime('now'))
     ON CONFLICT(email) DO UPDATE SET
@@ -105,7 +105,7 @@ export const onRequestGet: CFPagesFunction = async ({ request, env }) => {
       last_login = datetime('now')
   `).bind(userId, userInfo.id, email, userInfo.displayName || email, null).run();
 
-  const dbUser = await env.FORECAST_DB.prepare(
+  const dbUser = await env.DB.prepare(
     'SELECT id, email, name, picture_url FROM users WHERE email = ?1'
   ).bind(email).first<{ id: string; email: string; name: string; picture_url: string | null }>();
 
@@ -120,7 +120,7 @@ export const onRequestGet: CFPagesFunction = async ({ request, env }) => {
     picture: dbUser.picture_url || '',
   }, env.JWT_SECRET);
 
-  const cookieHeader = `hq_token=${jwt}; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=${7 * 24 * 60 * 60}`;
+  const cookieHeader = `dqs_token=${jwt}; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=${7 * 24 * 60 * 60}`;
 
   return new Response(null, {
     status: 302,

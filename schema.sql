@@ -1,4 +1,4 @@
--- Hephaestus Quant Schema (80-in-8 drill)
+-- Delft Quant Society Schema (80-in-8 drill)
 
 DROP TABLE IF EXISTS drill_scores;
 DROP TABLE IF EXISTS users;

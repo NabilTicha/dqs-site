@@ -1,22 +1,22 @@
-name = "hephaestusquant-site"
+name = "dqs-site"
 compatibility_date = "2024-12-30"
 pages_build_output_dir = "."
 
 [[d1_databases]]
-binding = "FORECAST_DB"
-database_name = "hephaestus-forecast"
-database_id = "8b20c7bb-4c7f-4f7f-9a87-afbbf18624be"
+binding = "DB"
+database_name = "dqs-db"
+database_id = "184d232c-c5cb-4ac3-84bc-fe85b0b079a6"
 
 [vars]
-SITE_URL = "https://hephaestusquant.org"
+SITE_URL = "https://delftquantsociety.org"
 
 # Email one-time-code sign-in. The sending domain must be verified in Resend
-# (DNS records go on the hephaestusquant.org zone in Cloudflare).
-EMAIL_FROM = "Hephaestus Quant <noreply@hephaestusquant.org>"
+# (DNS records go on the delftquantsociety.org zone in Cloudflare).
+EMAIL_FROM = "Delft Quant Society <noreply@delftquantsociety.org>"
 
 # RESEND_API_KEY and JWT_SECRET are encrypted secrets, never vars:
-# wrangler pages secret put RESEND_API_KEY
-# wrangler pages secret put JWT_SECRET
+# wrangler pages secret put RESEND_API_KEY --project-name dqs-site
+# wrangler pages secret put JWT_SECRET --project-name dqs-site
 #
 # --- Microsoft OAuth: dormant -----------------------------------------------
 # TU Delft blocks non-admins from registering Entra applications, so this flow
@@ -26,4 +26,4 @@ EMAIL_FROM = "Hephaestus Quant <noreply@hephaestusquant.org>"
 # MS_CLIENT_SECRET as a secret, and repoint Auth.login().
 MS_CLIENT_ID = ""           # Application (client) ID from Entra
 MS_TENANT_ID = ""           # Directory (tenant) ID — blank falls back to "organizations"
-MS_REDIRECT_URI = "https://hephaestusquant.org/api/auth/microsoft/callback"
+MS_REDIRECT_URI = "https://delftquantsociety.org/api/auth/microsoft/callback"

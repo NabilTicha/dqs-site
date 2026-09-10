@@ -1,5 +1,5 @@
 interface Env {
-  FORECAST_DB: D1Database;
+  DB: D1Database;
   JWT_SECRET: string;
   SITE_URL: string;
 

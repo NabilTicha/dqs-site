@@ -3,7 +3,7 @@ export const onRequestPost: CFPagesFunction = async ({ env }) => {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Set-Cookie': `hq_token=; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=0`,
+      'Set-Cookie': `dqs_token=; Path=/; HttpOnly; SameSite=Lax; Secure; Max-Age=0`,
     },
   });
 };

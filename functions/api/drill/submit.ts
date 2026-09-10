@@ -43,7 +43,7 @@ export const onRequestPost: CFPagesFunction = async ({ request, env }) => {
 
   const id = crypto.randomUUID();
 
-  await env.FORECAST_DB.prepare(
+  await env.DB.prepare(
     `INSERT INTO drill_scores (id, user_id, score, correct, wrong, skipped, duration_s, game_type)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
   )

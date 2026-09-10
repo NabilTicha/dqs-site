@@ -75,10 +75,10 @@ export function displayNameFromEmail(email: string): string {
 }
 
 export async function sendCodeEmail(env: Env, email: string, code: string): Promise<boolean> {
-  const subject = `${code} is your Hephaestus Quant sign-in code`;
+  const subject = `${code} is your Delft Quant Society sign-in code`;
 
   const text = [
-    `Your Hephaestus Quant sign-in code is ${code}`,
+    `Your Delft Quant Society sign-in code is ${code}`,
     ``,
     `It expires in 10 minutes and can be used once.`,
     `If you didn't request this, you can ignore this email.`,
@@ -88,7 +88,7 @@ export async function sendCodeEmail(env: Env, email: string, code: string): Prom
 <div style="background:#0B0D10;padding:40px 24px;font-family:Inter,system-ui,-apple-system,sans-serif">
   <div style="max-width:440px;margin:0 auto;background:#111318;border:1px solid rgba(184,156,75,0.16);padding:32px">
     <div style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#B89C4B;margin-bottom:20px">
-      Hephaestus Quant
+      Delft Quant Society
     </div>
     <div style="color:#e8e8ef;font-size:16px;margin-bottom:24px">Your sign-in code</div>
     <div style="font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:34px;letter-spacing:0.18em;color:#e8e8ef;background:#0B0D10;border:1px solid rgba(184,156,75,0.16);padding:18px;text-align:center">

@@ -24,7 +24,7 @@
 --
 -- Run ONCE on the remote database BEFORE deploying:
 --
---   npx wrangler d1 execute FORECAST_DB --remote --file=migration_v5_reconcile_prod.sql
+--   npx wrangler d1 execute DB --remote --file=migration_v5_reconcile_prod.sql
 --
 -- The legacy forecast tables (forecasts, forecast_grids, price_snapshots,
 -- assets) are deliberately left alone. They belong to a removed feature and
