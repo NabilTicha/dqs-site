@@ -774,6 +774,18 @@ code {
   border: 1px solid var(--border-strong);
 }
 
+.auth-avatar--initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
 .auth-name {
   font-family: var(--font-mono);
   font-size: 0.72rem;

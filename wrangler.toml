@@ -8,14 +8,22 @@ database_name = "hephaestus-forecast"
 database_id = "8b20c7bb-4c7f-4f7f-9a87-afbbf18624be"
 
 [vars]
-# Register the app at https://entra.microsoft.com → App registrations.
-# Account types: "Accounts in this organizational directory only (TU Delft)".
-# Redirect URI: https://hephaestusquant.org/api/auth/microsoft/callback
-MS_CLIENT_ID = ""           # Application (client) ID from Entra
-MS_TENANT_ID = ""           # Directory (tenant) ID — TU Delft's tenant
-MS_REDIRECT_URI = "https://hephaestusquant.org/api/auth/microsoft/callback"
 SITE_URL = "https://hephaestusquant.org"
 
-# MS_CLIENT_SECRET and JWT_SECRET must be set as encrypted secrets:
-# wrangler pages secret put MS_CLIENT_SECRET
+# Email one-time-code sign-in. The sending domain must be verified in Resend
+# (DNS records go on the hephaestusquant.org zone in Cloudflare).
+EMAIL_FROM = "Hephaestus Quant <noreply@hephaestusquant.org>"
+
+# RESEND_API_KEY and JWT_SECRET are encrypted secrets, never vars:
+# wrangler pages secret put RESEND_API_KEY
 # wrangler pages secret put JWT_SECRET
+#
+# --- Microsoft OAuth: dormant -----------------------------------------------
+# TU Delft blocks non-admins from registering Entra applications, so this flow
+# was never completable. The endpoints under functions/api/auth/microsoft/ are
+# intact but unreachable (js/auth.js points sign-in at /login.html instead).
+# To revive it: get an app registration from TU Delft ICT, fill these in, set
+# MS_CLIENT_SECRET as a secret, and repoint Auth.login().
+MS_CLIENT_ID = ""           # Application (client) ID from Entra
+MS_TENANT_ID = ""           # Directory (tenant) ID — blank falls back to "organizations"
+MS_REDIRECT_URI = "https://hephaestusquant.org/api/auth/microsoft/callback"

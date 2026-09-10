@@ -24,7 +24,12 @@ const Auth = (() => {
   function isLoggedIn() { return _user !== null; }
 
   function login() {
-    window.location.href = '/api/auth/login';
+    // Email one-time code. The Microsoft OAuth endpoints are still in the repo
+    // but unreachable: TU Delft blocks non-admins from registering Entra apps,
+    // so /api/auth/login stays dormant unless ICT ever grants us one.
+    if (window.location.pathname === '/login.html') return;
+    const next = window.location.pathname + window.location.search;
+    window.location.href = '/login.html?next=' + encodeURIComponent(next);
   }
 
   async function logout() {
@@ -34,15 +39,29 @@ const Auth = (() => {
     window.location.reload();
   }
 
+  function initials(name) {
+    const parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return '?';
+    const first = parts[0][0];
+    const last = parts.length > 1 ? parts[parts.length - 1][0] : '';
+    return (first + last).toUpperCase();
+  }
+
   function renderAuthUI() {
     const container = document.getElementById('auth-ui');
     if (!container) return;
 
     if (_user) {
+      // Email sign-in gives us no photo, so fall back to initials rather than
+      // an <img> with an empty src, which renders as a broken-image icon.
+      const avatar = _user.picture
+        ? `<img src="${_user.picture}" alt="" class="auth-avatar" referrerpolicy="no-referrer" />`
+        : `<span class="auth-avatar auth-avatar--initials">${initials(_user.name)}</span>`;
+
       container.innerHTML = `
         <div class="auth-user">
           <a href="/profile.html?id=${_user.id}" class="auth-avatar-link">
-            <img src="${_user.picture}" alt="" class="auth-avatar" referrerpolicy="no-referrer" />
+            ${avatar}
             <span class="auth-name">${_user.name}</span>
           </a>
           <button class="btn btn-sm" onclick="Auth.logout()">Sign out</button>
