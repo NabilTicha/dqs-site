@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Leaderboard · Delft Quant Society</title>
-  <meta name="description" content="Optiver Interview Prep leaderboard — averaged score across 80-in-8, Zap-N, and Math Tests." />
+  <title>Join · Delft Quant Society</title>
+  <meta name="description" content="Join Delft Quant Society, the TU Delft student society for quantitative trading and research recruitment preparation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -19,12 +19,10 @@
         <span></span><span></span><span></span>
       </button>
       <nav>
-        <a href="/kernel.html">Kernel</a>
-        <a href="/doctrine.html">Doctrine</a>
-        <a href="/leaderboard.html" class="active">Leaderboard</a>
+        <a href="/leaderboard.html">Leaderboard</a>
         <a href="/interview-prep.html">Interview Prep</a>
         <a href="/about.html">About</a>
-        <a href="/apply.html">Apply</a>
+        <a href="/join.html" class="active">Join</a>
         <div id="auth-ui"></div>
       </nav>
     </div>
@@ -33,24 +31,27 @@
   <main class="container">
 
     <section class="hero">
-      <span class="label">Optiver · Interview Prep</span>
-      <h1>Leaderboard</h1>
+      <span class="label">Join</span>
+      <h1>Join Delft Quant Society</h1>
       <p class="subtitle">
-        Averaged score across each user's best result in 80-in-8, Zap-N, and Math Tests.
-        All scores normalized to 0–100. Negative component scores are treated as 0.
+        For TU Delft students preparing for quantitative trading and research roles.
       </p>
     </section>
 
     <section>
-      <div id="leaderboard-content">
-        <div class="loading">Loading leaderboard…</div>
+      <div class="grid-2">
+        <div class="card">
+          <span class="label">Practise</span>
+          <h3>No sign-up needed</h3>
+          <p>All practice material is open. Sign in with your TU Delft email to record your scores on the <a href="/leaderboard.html">leaderboard</a>.</p>
+        </div>
+        <div class="card">
+          <span class="label">Get involved</span>
+          <h3>Contact us</h3>
+          <p>Want to join the society or help out? Email us and tell us a bit about yourself.</p>
+          <p style="margin-top: var(--space-sm);"><a href="mailto:info@delftquantsociety.org">info@delftquantsociety.org</a></p>
+        </div>
       </div>
-    </section>
-
-    <section class="cta-block">
-      <h2>Improve your score</h2>
-      <p>Complete all three assessments to appear on the leaderboard with a full average.</p>
-      <a href="/optiver-prep.html" class="btn btn-primary">Go to Optiver Prep →</a>
     </section>
 
   </main>
@@ -58,12 +59,11 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <span>Delft Quant Society · TU Delft</span>
-      <span>2025</span>
+      <span>Est. 2025</span>
     </div>
   </footer>
 
   <script src="/js/auth.js"></script>
-  <script src="/js/leaderboard.js"></script>
 
 </body>
 </html>

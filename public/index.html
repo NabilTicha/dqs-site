@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delft Quant Society</title>
+  <meta name="description" content="Delft Quant Society is an independent student society helping TU Delft students prepare for quantitative trading and research recruitment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-name">Delft Quant Society</a>
+      <button class="menu-toggle" onclick="document.querySelector('nav').classList.toggle('open')" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <a href="/leaderboard.html">Leaderboard</a>
+        <a href="/interview-prep.html">Interview Prep</a>
+        <a href="/about.html">About</a>
+        <a href="/join.html">Join</a>
+        <div id="auth-ui"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero hero-bg" style="--hero-bg: url('/pics/image2.png')">
+      <span class="label">TU Delft · Est. Fall 2025</span>
+      <h1>Preparing TU Delft students for quant careers.</h1>
+      <p class="subtitle">
+        Delft Quant Society is an independent student society. We help students prepare
+        for recruitment at quantitative trading and research firms.
+      </p>
+      <div style="margin-top: var(--space-md);">
+        <a href="/interview-prep.html" class="btn btn-primary">Start practising</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid-2">
+        <div class="card">
+          <span class="label">Practice</span>
+          <h3>Assessment-style tests</h3>
+          <p>Timed mental arithmetic, cognitive games, probability and statistics, and coding problems, modelled on the assessments quant firms use. Start with the <a href="/optiver-prep.html">Optiver track</a>.</p>
+        </div>
+        <div class="card">
+          <span class="label">Leaderboard</span>
+          <h3>Track your progress</h3>
+          <p>Sign in with your @tudelft.nl or @student.tudelft.nl address to record your scores and compare them with other TU Delft students. <a href="/leaderboard.html">View leaderboard</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-block">
+      <h2>Get involved</h2>
+      <p>
+        The practice material is open to everyone. If you want to join the society or help out, get in touch.
+      </p>
+      <a href="/join.html" class="btn btn-primary">Join</a>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Delft Quant Society · TU Delft</span>
+      <span>Est. 2025</span>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+
+</body>
+</html>
